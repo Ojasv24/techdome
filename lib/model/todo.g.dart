@@ -10,10 +10,12 @@ _$_Todo _$$_TodoFromJson(Map<String, dynamic> json) => _$_Todo(
       id: json['id'] as String,
       description: json['description'] as String,
       completed: json['completed'] as bool,
+      dateTime: DateTime.parse(json['dateTime'] as String),
     );
 
 Map<String, dynamic> _$$_TodoToJson(_$_Todo instance) => <String, dynamic>{
       'id': instance.id,
       'description': instance.description,
       'completed': instance.completed,
+      'dateTime': instance.dateTime.toIso8601String(),
     };

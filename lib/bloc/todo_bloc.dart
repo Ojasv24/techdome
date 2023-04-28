@@ -26,7 +26,14 @@ class TodoBloc extends _$TodoBloc {
     await ref.watch(todoRepositoryProvider).delete(todo);
   }
 
-  Future<void> updateTodo(Todo todo) async {
+  Future<void> updateTodo(Todo todo, String value) async {
+    todo = todo.copyWith(description: value);
+    await ref.watch(todoRepositoryProvider).update(todo);
+  }
+
+  Future<void> toggle(Todo todo) async {
+    todo = todo.copyWith(completed: !todo.completed);
+
     await ref.watch(todoRepositoryProvider).update(todo);
   }
 

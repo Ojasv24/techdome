@@ -37,10 +37,11 @@ class SignInPageBloc extends _$SignInPageBloc {
   }
 
   Future<void> signIn() async {
+    state = state.copyWith(showError: true);
     if (!validateEmailPassword()) {
       return;
     }
-    state = state.copyWith(loading: true, showError: true);
+    state = state.copyWith(loading: true);
     try {
       await ref
           .watch(authBlocProvider.notifier)
@@ -49,6 +50,13 @@ class SignInPageBloc extends _$SignInPageBloc {
     } catch (e) {
       if (e is EmailAlreadyExistsException) {
         state = state.copyWith(error: 'Email already exists', loading: false);
+      } else if (e is WrongUsernameOrPassword) {
+        state =
+            state.copyWith(error: 'WrongUsernameOrPassword', loading: false);
+      } else if (e is UnknowException) {
+        state = state.copyWith(error: 'UnknownException', loading: false);
+      } else if (e is InvalidEmail) {
+        state = state.copyWith(error: 'InvalidEmail', loading: false);
       }
     }
   }
@@ -65,8 +73,13 @@ class SignInPageBloc extends _$SignInPageBloc {
       state = state.copyWith(loading: false);
     } catch (e) {
       if (e is EmailAlreadyExistsException) {
-        print('ojasv');
         state = state.copyWith(error: 'Email already exists', loading: false);
+      } else if (e is WeakPassword) {
+        state = state.copyWith(error: 'Weakpassword', loading: false);
+      } else if (e is InvalidEmail) {
+        state = state.copyWith(error: 'InvalidEmail', loading: false);
+      } else if (e is UnknowException) {
+        state = state.copyWith(error: 'UnknowException', loading: false);
       }
     }
   }

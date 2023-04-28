@@ -11,6 +11,7 @@ class TodoPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authNotifier = ref.watch(authBlocProvider.notifier);
     final todoNotifier = ref.watch(todoBlocProvider.notifier);
+    TextEditingController? controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -20,21 +21,46 @@ class TodoPage extends ConsumerWidget {
               },
               icon: const Icon(Icons.logout))
         ],
-        title: Text('Todos'),
+        title: const Text('Todos'),
       ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TodoList(),
+            const TodoList(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: controller,
+                      decoration: InputDecoration(
+                          hintText: 'Add new todo....',
+                          filled: true,
+                          fillColor: Colors.blue.shade100,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          )),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      if (controller.text.isNotEmpty) {
+                        todoNotifier.addTodo(controller.text);
+                        controller.text = '';
+                      }
+                    },
+                    icon: const Icon(Icons.add),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

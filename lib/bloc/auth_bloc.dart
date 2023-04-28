@@ -1,6 +1,7 @@
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:techdome/model/auth_state.dart';
+import 'package:techdome/model/exceptions.dart';
 // import 'package:techdome/res/users/users_repostiorty.dart';
 
 import 'package:techdome/repository/auth_repository.dart';

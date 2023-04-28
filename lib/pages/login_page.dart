@@ -88,17 +88,18 @@ class LoginPage extends ConsumerWidget {
                   ),
                 ],
               ),
-              if (state.showError && state.error.isNotEmpty)
+              if (state.showError && state.error.isNotEmpty) ...{
                 const SizedBox(
-                  height: 50,
+                  height: 10,
                 ),
-              Text(
-                state.error,
-                style: const TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24),
-              ),
+                Text(
+                  state.error,
+                  style: const TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24),
+                ),
+              }
             ],
           ),
         ),

@@ -6,7 +6,7 @@ part of 'todo_bloc.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$todoBlocHash() => r'7fb318ad0612e46308ab33ad02d4129fba051e59';
+String _$todoBlocHash() => r'aea0f4170b4439c4f087b53eb77b0e3248066d3d';
 
 /// See also [TodoBloc].
 @ProviderFor(TodoBloc)

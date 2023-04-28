@@ -9,6 +9,7 @@ class Todo with _$Todo {
     required String id,
     required String description,
     required bool completed,
+    required DateTime dateTime,
   }) = _Todo;
 
   factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);

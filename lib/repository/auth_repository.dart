@@ -31,10 +31,20 @@ class AuthRepository {
       );
     } catch (e) {
       if (e is FirebaseAuthException) {
+        print(e.code);
         if (e.code == 'user-not-found' || e.code == 'wrong-password') {
           throw WrongUsernameOrPassword();
         }
+        if (e.code == 'weak-password') {
+          throw WeakPassword();
+        } else if (e.code == 'email-already-in-use') {
+          throw EmailAlreadyExistsException();
+        } else if (e.code == 'invalid-email' ||
+            e.code == 'The email address is badly formatted.') {
+          throw InvalidEmail();
+        }
       }
+      throw UnknowException();
     }
   }
 
@@ -47,14 +57,16 @@ class AuthRepository {
       );
     } catch (e) {
       if (e is FirebaseAuthException) {
-        print(e.code);
         if (e.code == 'weak-password') {
           throw WeakPassword();
         } else if (e.code == 'email-already-in-use') {
-          print("FIRST EXPECTIONS");
           throw EmailAlreadyExistsException();
+        } else if (e.code == 'invalid-email' ||
+            e.code == 'The email address is badly formatted.') {
+          throw InvalidEmail();
         }
       }
+      throw UnknowException();
     }
   }
 

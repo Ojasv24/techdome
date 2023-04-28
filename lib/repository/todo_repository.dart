@@ -23,7 +23,11 @@ class TodoRepository {
 
   Future<void> add(String text) async {
     final doc = collection.doc();
-    final todo = Todo(id: doc.id, description: text, completed: false);
+    final todo = Todo(
+        id: doc.id,
+        description: text,
+        completed: false,
+        dateTime: DateTime.now());
     await doc.set(todo.toJson());
   }
 
@@ -37,7 +41,10 @@ class TodoRepository {
 
   Stream<List<Todo>> listenTodoList() {
     // listen todoModel to firestore user
-    return collection.snapshots().map((snapshot) {
+    return collection
+        .orderBy('dateTime', descending: true)
+        .snapshots()
+        .map((snapshot) {
       return snapshot.docs.map((doc) {
         return Todo.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
