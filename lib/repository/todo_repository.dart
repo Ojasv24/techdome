@@ -21,7 +21,7 @@ class TodoRepository {
     return FirebaseFirestore.instance.collection(uid);
   }
 
-  Future<void> create(String text) async {
+  Future<void> add(String text) async {
     final doc = collection.doc();
     final todo = Todo(id: doc.id, description: text, completed: false);
     await doc.set(todo.toJson());
