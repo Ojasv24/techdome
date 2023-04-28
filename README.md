@@ -5,7 +5,7 @@ This is a simple ToDo app built using Flutter and Firebase technologies, with Ri
 
 ## Demo
 
-- Download the apk from 
+- Download the apk from https://github.com/Ojasv24/techdome/raw/master/app-release.apk
 - Either use any email and password for sign up or use the following crendtials
   - abc@gmai.com
   - 12345678
