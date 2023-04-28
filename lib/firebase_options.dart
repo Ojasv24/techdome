@@ -23,9 +23,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -58,25 +64,5 @@ class DefaultFirebaseOptions {
     messagingSenderId: '641701045991',
     projectId: 'techdome-e35e6',
     storageBucket: 'techdome-e35e6.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD87_ZC_aPzgzv204SF4nrDpnEZXmq8Ihc',
-    appId: '1:641701045991:ios:6a11329f295e277b146442',
-    messagingSenderId: '641701045991',
-    projectId: 'techdome-e35e6',
-    storageBucket: 'techdome-e35e6.appspot.com',
-    iosClientId: '641701045991-42ssmv79gmbhgbk791bl562lljn52s8f.apps.googleusercontent.com',
-    iosBundleId: 'com.example.techdome',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD87_ZC_aPzgzv204SF4nrDpnEZXmq8Ihc',
-    appId: '1:641701045991:ios:6a11329f295e277b146442',
-    messagingSenderId: '641701045991',
-    projectId: 'techdome-e35e6',
-    storageBucket: 'techdome-e35e6.appspot.com',
-    iosClientId: '641701045991-42ssmv79gmbhgbk791bl562lljn52s8f.apps.googleusercontent.com',
-    iosBundleId: 'com.example.techdome',
   );
 }
