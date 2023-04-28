@@ -19,19 +19,19 @@ mixin _$TodoState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() todos,
+    required TResult Function(List<Todo> todos) todos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? todos,
+    TResult? Function(List<Todo> todos)? todos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? todos,
+    TResult Function(List<Todo> todos)? todos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -110,7 +110,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() todos,
+    required TResult Function(List<Todo> todos) todos,
   }) {
     return loading();
   }
@@ -119,7 +119,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? todos,
+    TResult? Function(List<Todo> todos)? todos,
   }) {
     return loading?.call();
   }
@@ -128,7 +128,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? todos,
+    TResult Function(List<Todo> todos)? todos,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -177,6 +177,8 @@ abstract class Loading implements TodoState {
 abstract class _$$TodosCopyWith<$Res> {
   factory _$$TodosCopyWith(_$Todos value, $Res Function(_$Todos) then) =
       __$$TodosCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Todo> todos});
 }
 
 /// @nodoc
@@ -184,54 +186,84 @@ class __$$TodosCopyWithImpl<$Res> extends _$TodoStateCopyWithImpl<$Res, _$Todos>
     implements _$$TodosCopyWith<$Res> {
   __$$TodosCopyWithImpl(_$Todos _value, $Res Function(_$Todos) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? todos = null,
+  }) {
+    return _then(_$Todos(
+      null == todos
+          ? _value._todos
+          : todos // ignore: cast_nullable_to_non_nullable
+              as List<Todo>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$Todos implements Todos {
-  _$Todos();
+  _$Todos(final List<Todo> todos) : _todos = todos;
+
+  final List<Todo> _todos;
+  @override
+  List<Todo> get todos {
+    if (_todos is EqualUnmodifiableListView) return _todos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_todos);
+  }
 
   @override
   String toString() {
-    return 'TodoState.todos()';
+    return 'TodoState.todos(todos: $todos)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Todos);
+        (other.runtimeType == runtimeType &&
+            other is _$Todos &&
+            const DeepCollectionEquality().equals(other._todos, _todos));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_todos));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TodosCopyWith<_$Todos> get copyWith =>
+      __$$TodosCopyWithImpl<_$Todos>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() todos,
+    required TResult Function(List<Todo> todos) todos,
   }) {
-    return todos();
+    return todos(this.todos);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? todos,
+    TResult? Function(List<Todo> todos)? todos,
   }) {
-    return todos?.call();
+    return todos?.call(this.todos);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? todos,
+    TResult Function(List<Todo> todos)? todos,
     required TResult orElse(),
   }) {
     if (todos != null) {
-      return todos();
+      return todos(this.todos);
     }
     return orElse();
   }
@@ -269,5 +301,9 @@ class _$Todos implements Todos {
 }
 
 abstract class Todos implements TodoState {
-  factory Todos() = _$Todos;
+  factory Todos(final List<Todo> todos) = _$Todos;
+
+  List<Todo> get todos;
+  @JsonKey(ignore: true)
+  _$$TodosCopyWith<_$Todos> get copyWith => throw _privateConstructorUsedError;
 }

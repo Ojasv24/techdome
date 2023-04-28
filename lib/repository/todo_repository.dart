@@ -35,7 +35,7 @@ class TodoRepository {
     await collection.doc(todo.id).delete();
   }
 
-  Stream listenTodoList() {
+  Stream<List<Todo>> listenTodoList() {
     // listen todoModel to firestore user
     return collection.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {

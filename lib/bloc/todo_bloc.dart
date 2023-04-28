@@ -15,25 +15,25 @@ class TodoBloc extends _$TodoBloc {
 
   Future<void> init() async {
     state = TodoState.loading();
-    final todos = ref.watch(todoRepositoryProvider).listenTodoList();
-    state = TodoState.todos();
+    listenTodo();
   }
 
   Future<void> addTodo(String text) async {
-    state = TodoState.loading();
     await ref.watch(todoRepositoryProvider).add(text);
-    state = TodoState.todos();
   }
 
   Future<void> deleteTodo(Todo todo) async {
-    state = TodoState.loading();
     await ref.watch(todoRepositoryProvider).delete(todo);
-    state = TodoState.todos();
   }
 
   Future<void> updateTodo(Todo todo) async {
-    state = TodoState.loading();
     await ref.watch(todoRepositoryProvider).update(todo);
-    state = TodoState.todos();
+  }
+
+  Future<void> listenTodo() async {
+    final stodos = ref.watch(todoRepositoryProvider).listenTodoList();
+    stodos.listen((todos) {
+      state = TodoState.todos(todos);
+    });
   }
 }
