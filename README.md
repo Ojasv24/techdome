@@ -1,4 +1,3 @@
-
 # ToDo App with Flutter, Firebase, and Riverpod 
 
 This is a simple ToDo app built using Flutter and Firebase technologies, with Riverpod for state management and dependency injection.
@@ -6,14 +5,19 @@ This is a simple ToDo app built using Flutter and Firebase technologies, with Ri
 ## Demo
 
 - Download the apk from https://github.com/Ojasv24/techdome/raw/master/app-release.apk or use the web app at https://techdome-e35e6.web.app/
+
+- ### Update After 28 April ###  
+    - Fixed sign up bug
+    - Updated UI
+    - Updated apk :- https://github.com/Ojasv24/techdome/raw/master/updated_29_april.apk
 - Either use any email and password for sign up or use the following crendtials
-  - abc@gmai.com
+  - abc@gmail.com
   - 12345678
 
 - To add any ToDo enter the description to the bottom text box and click on the plus button beside it
 - To update the ToDo tap on the text to inplace update the text
 - To Mark it as completed click on the check box
-- TO delete any ToDo click on bin Icon
+- To delete any ToDo click on bin Icon
 
 ## Features
 
