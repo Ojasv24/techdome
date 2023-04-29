@@ -6,7 +6,7 @@ part of 'signin_page_bloc.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signInPageBlocHash() => r'a2e8643b206735cdba8b05f54fc8cbf9e54809ec';
+String _$signInPageBlocHash() => r'ddaec9ba986455c026eff65d84b2fe35d87c6fb4';
 
 /// See also [SignInPageBloc].
 @ProviderFor(SignInPageBloc)

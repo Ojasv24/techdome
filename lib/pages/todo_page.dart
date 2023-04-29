@@ -14,6 +14,7 @@ class TodoPage extends ConsumerWidget {
     TextEditingController? controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.note_alt_outlined),
         actions: [
           IconButton(
               onPressed: () {

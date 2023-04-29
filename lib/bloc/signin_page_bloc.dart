@@ -62,10 +62,10 @@ class SignInPageBloc extends _$SignInPageBloc {
   }
 
   Future<void> signUp() async {
+    state = state.copyWith(loading: true, showError: true);
     if (!validateEmailPassword()) {
       return;
     }
-    state = state.copyWith(loading: true, showError: true);
     try {
       await ref
           .watch(authBlocProvider.notifier)

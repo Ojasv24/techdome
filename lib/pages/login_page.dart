@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../bloc/signin_page_bloc.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -18,25 +17,25 @@ class LoginPage extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 50),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'Todo App',
-                      style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue),
-                    ),
-                    Icon(
-                      Icons.note_alt_outlined,
-                      size: 40,
-                      color: Colors.purple,
-                    )
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    'Todo App',
+                    style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  ),
+                  Icon(
+                    Icons.note_alt_outlined,
+                    size: 40,
+                    color: Colors.purple,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 50,
               ),
               Form(
                 key: key,
@@ -78,13 +77,29 @@ class LoginPage extends ConsumerWidget {
                     onPressed: () async {
                       notifier.signIn();
                     },
-                    child: const Text('SIGN IN'),
+                    child: Row(
+                      children: const [
+                        Text('SIGN IN'),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.login)
+                      ],
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: () async {
                       notifier.signUp();
                     },
-                    child: const Text('Sign Up'),
+                    child: Row(
+                      children: const [
+                        Text('SIGN UP'),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.app_registration_rounded)
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -92,13 +107,29 @@ class LoginPage extends ConsumerWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  state.error,
-                  style: const TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24),
-                ),
+                Card(
+                  color: Colors.red,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.error,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          state.error,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               }
             ],
           ),
